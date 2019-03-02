@@ -11,12 +11,15 @@ public class GameManager : MonoBehaviour {
 	public Text questionText, scoreValue;
 	public Text[] choices;
 	public Question[] questions;
+	GameObject questionManager;
 	private List<Question> unAnsweredQuestions;
 	private int index;
 	private int point;
 
 	// Use this for initialization
 	void Start () {
+		questionManager = GameObject.FindGameObjectWithTag ("QuestionManager");
+		questions = questionManager.GetComponent<QuestionManager> ().questions;
 		if (unAnsweredQuestions == null || unAnsweredQuestions.Count == 0 ) {
 			unAnsweredQuestions = questions.ToList ();
 			point = 0;
